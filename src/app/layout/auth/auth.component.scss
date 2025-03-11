@@ -1,0 +1,27 @@
+@use '../../../scss/typography';
+:host {
+    display: grid;
+    height: 100%;
+    
+    .brand {
+        @include typography.typography-display-small();
+        display: grid;
+        grid-template-columns: 1fr min-content;
+        padding-bottom: 24px;
+        place-items: center;
+        width: 300px;
+    }
+
+    main {
+        place-self: center;
+    }
+}
+
+
+.material-symbols-outlined {
+    height: 40px;
+    width: 40px;
+    font-size: inherit;
+    align-items: center;
+    display: flex;
+}

@@ -1,0 +1,3 @@
+﻿docker buildx build -f Dockerfile -t kristinka2002/bug-hunter:0.1.0 -t kristinka2002/bug-hunter:latest --build-context client="../../" --build-context nginx-templates="./nginx/templates" .
+
+docker push kristinka2002/cm25-client -a

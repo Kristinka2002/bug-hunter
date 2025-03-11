@@ -1,0 +1,40 @@
+﻿name: bug-hunter
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+      - ../dist/bug-hunter/browser:/usr/share/nginx/html
+    container_name: nginx
+    networks:
+      - bug-hunter
+    ports:
+      - "10500:80"
+  mongodb:
+    image: mongo:6.0.3
+    container_name: database
+    volumes:
+      - cm25server_mongo_volume:/data/db
+    networks:
+      - bug-hunter
+    ports:
+      - "20101:27017"
+  backend:
+    image: vordi/cm25-server:0.6.0
+    container_name: backend
+    environment:
+      CM25SERVER_DATABASE: "mongodb://mongodb/cm25server?retryWrites=false"
+    networks:
+      - bug-hunter
+  frontend:
+    image: kristinka2002/bug-hunter
+    container_name: frontend
+    networks:
+      - bug-hunter
+volumes:
+    cm25server_mongo_volume:
+        external: false
+networks:
+  bug-hunter:
+    name: bug-hunter

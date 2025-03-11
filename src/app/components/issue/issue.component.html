@@ -1,0 +1,27 @@
+<div class="app-issue__project-code">{{ issue().projectCode }}</div>
+<div class="app-issue__name">{{ issue().name }}</div>
+<div class="app-issue__created-on">{{'Created ' + (issue().createdOn | relativeTime) }}</div>
+<div class="app-issue__priority" [matTooltip]="issue().priority">  
+    @switch (issue().priority) {
+        @case("Minor"){
+            <span class="material-symbols-outlined">
+                battery_charging_90
+            </span>
+        }
+        @case("Normal"){
+            <span class="material-symbols-outlined">
+                battery_charging_60
+            </span>
+        }
+        @case("Major"){
+            <span class="material-symbols-outlined">
+                battery_charging_20
+            </span>
+        }
+        @case("Critical"){
+            <span class="material-symbols-outlined">
+                battery_alert
+            </span>
+        }
+    }
+</div>
